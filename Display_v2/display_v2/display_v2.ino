@@ -2,8 +2,8 @@
 // If using the Arduino shield, use the tftpaint_shield.pde sketch instead!
 // DOES NOT CURRENTLY WORK ON ARDUINO LEONARDO
 
-#include <Adafruit_GFX.h>    // Core graphics library
-#include <Adafruit_TFTLCD.h> // Hardware-specific library
+#include <Elegoo_GFX.h>    // Core graphics library
+#include <Elegoo_TFTLCD.h> // Hardware-specific library
 #include <TouchScreen.h>
 #include <SPI.h>
 #include <SD.h>
