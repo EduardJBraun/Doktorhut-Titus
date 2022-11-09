@@ -68,6 +68,7 @@ TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
 // optional
 #define LCD_RESET A4
 #define SD_CS 10
+#define PD_pin A15
 
 // Assign human-readable names to some common 16-bit color values:
 #define	BLACK   0x0000
@@ -131,10 +132,7 @@ identifier=0x9341;
     return;
   }
   Serial.println(F("OK!"));
-  tft.setRotation(1);
-  bmpDraw("image2.bmp", 0, 0);
-  tft.setRotation(0);
-  delay(1000);
+  
 
   //tft.fillRect(0, 0, BOXSIZE, BOXSIZE, RED);
   //tft.fillRect(BOXSIZE, 0, BOXSIZE, BOXSIZE, YELLOW);
@@ -152,7 +150,18 @@ identifier=0x9341;
 #define MAXPRESSURE 1000
 
 void loop()
-{ while(counter<600)
+{ 
+  /*int pd_current = 0;
+  while(pd_current<=850){
+    pd_current= analogRead(PD_pin);
+    Serial.println(pd_current);
+    delay(200);
+  }*/
+  tft.setRotation(1);
+  bmpDraw("labview.bmp", 0, 0);
+  tft.setRotation(0);
+  delay(1000);
+  while(counter<0)
   {
     digitalWrite(13, HIGH);
     TSPoint p = ts.getPoint();
@@ -184,7 +193,7 @@ void loop()
       Serial.println(")");
     
       if (((p.y-PENRADIUS) > 0) && ((p.y+PENRADIUS) < tft.height())) {
-        tft.fillCircle(p.x, p.y, PENRADIUS, WHITE);
+        tft.fillCircle(p.x, p.y, PENRADIUS, BLUE);
         counter++;
         Serial.println(counter);
       }
